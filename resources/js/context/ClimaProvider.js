@@ -1,6 +1,4 @@
 import { useState, createContext } from 'react'
-import axios from 'axios'
-import useClima from '../hooks/UseClima'
 
 const ClimaContext = createContext()
 
@@ -26,10 +24,6 @@ const ClimaProvider = ({children}) => {
         console.log(datos);
         try {
             const { ciudad } = datos
-
-            const { resultado } = useClima()
-
-            const { name, lat, lon } = resultado
 
             const apiId = "1f48ccf35d5a116c7df4757647c8120c"
 

@@ -13,8 +13,8 @@ function Resultado() {
     return (
         <div className="contenedor clima">
             <h2>El Clima de {name} es: </h2>
-            <h2>El Clima de {lat} es: </h2>
-            <h2>El Clima de {lon} es: </h2>
+            <h2>Latitu {lat} </h2>
+            <h2>Longitud {lon}  </h2>
         </div>
     )
 }
