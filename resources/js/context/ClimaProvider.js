@@ -5,41 +5,28 @@ const ClimaContext = createContext()
 
 const ClimaProvider = ({children}) => {
 
-    const [busqueda, setBusqueda] = useState({
-        ciudad: ''
-    })
+    const [busqueda, setBusqueda] = useState({})
+    
+    const { ciudad } = busqueda 
 
-    const [resultado, setResultado] = useState({})
+    const [climaCiudades, setClimaCiudades] = useState({})
 
-    const datosBusqueda = e => {
+
+    const datoSelect = e => {
         setBusqueda({
-            ...busqueda,
             [e.target.name]: e.target.value
         })
     }
 
-    
-
-    const consultarClima = async datos => {
-        console.log(datos);
+    const consultarClima = async () => {
         try {
-            const { ciudad } = datos
-
             const apiId = "1f48ccf35d5a116c7df4757647c8120c"
-
-            const url = `http://api.openweathermap.org/geo/1.0/direct?q=${ciudad},US&limit=1&appid=${apiId}`
-            console.log(url)
-
-            fetch(url)
-            .then((response) => response.json())
-            .then((json) => 
-                {
-                    setResultado(json[0])
-                
-                }
-            )
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad ? ciudad : null},US&appid=${apiId}`
+            const climaCiudad = await fetch(url)
+            const consultaApi = await climaCiudad.json()
+            setBusqueda(consultaApi)
+            setClimaCiudades(consultaApi)
             
-
         } catch (error) {
             console.log(error)
         }
@@ -49,9 +36,9 @@ const ClimaProvider = ({children}) => {
         <ClimaContext.Provider
             value={{
                 busqueda,
-                datosBusqueda,
+                datoSelect,
                 consultarClima,
-                resultado
+                climaCiudades
             }}
         >
             {children}

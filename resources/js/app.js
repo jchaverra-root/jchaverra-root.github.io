@@ -20,5 +20,11 @@ require('./components/Formulario');
 
 require('./components/Resultado');
 
+require('./components/Historial');
+
+require('./components/Mapa');
+
+require('./components/Maps');
+
 
 

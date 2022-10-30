@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import MostrarClima from "./MostrarClima"
 import { ClimaProvider } from '../context/ClimaProvider'
 
+import './estilos.css';
+
 
 function App() {
 
@@ -22,5 +24,8 @@ function App() {
 export default App;
 
 if (document.getElementById('app')) {
-    ReactDOM.render(<App />, document.getElementById('app'));
+    ReactDOM.render(<React.StrictMode>
+                            <App />
+                    </React.StrictMode>, 
+    document.getElementById('app'));
 }

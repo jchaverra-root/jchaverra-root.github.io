@@ -8,21 +8,22 @@ const Formulario = () => {
 
     const [alerta, setAlerta] = useState('')
 
-    const { busqueda, datosBusqueda, consultarClima } = useClima()
+    const { busqueda, datoSelect, consultarClima, climaCiudades } = useClima()
 
     const { ciudad } = busqueda
 
     const handleSubmit = e => {
         e.preventDefault()
 
+        
         if (Object.values(busqueda).includes('')) {
-            setAlerta('Slecciona una Ciudad');
+            setAlerta('Slecciona una Ciudad')
             return
         }
+
         setAlerta('')
+
         consultarClima(busqueda)
-
-
     }
 
     return (
@@ -37,10 +38,10 @@ const Formulario = () => {
                         name="ciudad"
                         id="ciudad"
                         value={ciudad}
-                        onChange={datosBusqueda}
+                        onChange={datoSelect}
                         className=""
                     >
-                        <option>-- Seleccione una Ciudad --</option>
+                        <option value={""}>-- Seleccione una Ciudad --</option>
                         <option value="Miami">Miami</option>
                         <option value="Orlando">Orlando</option>
                         <option value="new%20york">New York</option>
